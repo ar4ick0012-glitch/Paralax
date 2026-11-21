@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" data-theme="violet">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b0b10"><title>Parallax AI</title><link rel="stylesheet" href="app.css"></head>
+<body>
+<main>
+<header class="app-header"><a class="brand" href="#home" aria-label="Home"><span class="brand-symbol" aria-hidden="true"></span><span data-brand>PARALLAX AI</span></a><div class="theme-pick" role="group" aria-label="Color theme"><button type="button" data-color="violet" aria-label="Violet theme" title="Violet"><i></i></button><button type="button" data-color="graphite" aria-label="Graphite theme" title="Graphite"><i></i></button><button type="button" data-color="amber" aria-label="Amber theme" title="Amber"><i></i></button></div></header>
+<div class="sub-header"><button id="page-back" class="back" hidden aria-label="Back">‹ Back</button><span id="theme-label">Violet</span></div>
+<p class="static-banner">Preview · recorded candles · no live quotes</p>
+<div id="notice" role="status" aria-live="polite"></div>
+<section id="register" class="page" hidden><div class="hero "><div class="hero-art" aria-hidden="true"></div><div class="hero-copy"><span class="eyebrow">SIGNALS · CHARTS · PERSPECTIVE</span><h1>Your next<br>perspective.</h1><p>Progress begins with a deliberate choice.</p></div></div>
+<div class="panel controls"><span class="eyebrow">WELCOME</span><h2>Enter your workspace</h2><p>Create your Pocket Option account through our registration link, then return here.</p><button id="register-broker" class="primary">Create Pocket Option account</button><button id="register-continue" class="scan" hidden>Check registration</button><p class="hint" id="registration-status">Your access follows your confirmed registration.</p></div></section>
+<section id="home" class="page"><div class="hero "><div class="hero-art" aria-hidden="true"></div><div class="hero-copy"><span class="eyebrow">SIGNALS · CHARTS · PERSPECTIVE</span><h1>Welcome to<br><span data-brand-name>Parallax AI</span></h1><p>Your next perspective. Progress begins with a deliberate choice.</p></div></div>
+<div class="section-label"><span>YOUR WORKSPACE</span><span class="tiny">01 — 03</span></div>
+<div class="mode-list"><a class="mode-card" href="#auto"><i class="mode-icon bars" aria-hidden="true">▥</i><span><strong>Market signals</strong><small>Let the market come to you</small><em class="mode-tag" id="tag-auto"></em></span><b aria-hidden="true">›</b></a><a class="mode-card" href="#signal"><i class="mode-icon" aria-hidden="true">◇</i><span><strong>Choose asset</strong><small>Build your own setup</small><em class="mode-tag" id="tag-signal"></em></span><b aria-hidden="true">›</b></a><a class="mode-card" href="#photo"><i class="mode-icon" aria-hidden="true">⌗</i><span><strong>Chart analysis</strong><small>Read your Pocket Option chart</small><em class="mode-tag" id="tag-photo"></em></span><b aria-hidden="true">›</b></a></div><p id="home-allowance" class="hint quiet"></p></section>
+<section id="auto" class="page" hidden><div class="hero compact"><div class="hero-art" aria-hidden="true"></div><div class="hero-copy"><span class="eyebrow">SIGNALS · CHARTS · PERSPECTIVE</span><h1>Market<br>signals.</h1><p>Observe. Evaluate. Decide.</p></div></div>
+<div class="panel controls"><span class="eyebrow">AUTOMATIC SELECTION</span><h2>Find your next setup</h2><p id="auto-hint"></p><div class="allowance" id="auto-allowance"></div><button id="auto-run" class="primary">Find a signal</button><a href="#signal" class="text-link">Choose an asset yourself</a></div></section>
+<section id="signal" class="page" hidden><div class="page-heading"><span class="eyebrow">MANUAL SELECTION</span><h1>Your setup.</h1><p>A deliberate choice, one step at a time.</p></div><div class="layout"><form id="request-form" class="controls">
+<fieldset><legend><span>1.</span> Market type</legend><div class="market-options"><label><input type="radio" name="venue" value="fx" checked><span><b>Standard</b><small>Regular market</small></span></label><label><input type="radio" name="venue" value="otc"><span><b>OTC</b><small>Over-the-counter</small></span></label></div></fieldset>
+<fieldset><legend><span>2.</span> Category</legend><div id="category-choices" class="category-choices"><button type="button" data-category="Currency" aria-pressed="true">◎<small>Currency</small></button><button type="button" data-category="Stock">▥<small>Stock</small></button><button type="button" data-category="Commodity">◇<small>Commodity</small></button><button type="button" data-category="Indices">▤<small>Indices</small></button><button type="button" data-category="Crypto">₿<small>Crypto</small></button></div></fieldset>
+<fieldset><legend><span>3.</span> Instrument</legend><p class="hint">Choose a pair or asset.</p><div id="asset-filter" class="chips"></div><div id="asset-list"></div><div class="asset-row" hidden><select id="asset" aria-label="Asset"></select><button id="star" type="button" aria-label="Add to favorites">☆</button></div></fieldset>
+<fieldset><legend><span>4.</span> Expiry</legend><div id="expiry-chips" class="chips expiry-chips" aria-label="Choose expiry"></div><details class="advanced-setting"><summary>Analysis settings</summary><label>Method<select id="rule"></select></label><div class="pair"><label>Candle interval<select id="tf"></select></label><label>Expiry<select id="expiry"></select></label></div></details></fieldset>
+<button class="primary" type="submit" id="generate">Generate signal</button></form><details class="market-preview"><summary>Market connection</summary><div id="signal-output" class="output" aria-live="polite"></div></details></div></section>
+<section id="decision" class="page" hidden><div class="page-heading"><span class="eyebrow">YOUR PERSPECTIVE</span><h1 id="decision-heading">Signal ready.</h1></div><div id="decision-card" class="output"></div><button id="again" class="primary">Show another example <span aria-hidden="true">⟳</span></button><button id="change-options" class="scan">Change setup</button></section>
+      <section id="photo" class="page" hidden>
+        <div class="page-heading"><span class="eyebrow">CHART VISION</span><h1>Chart analysis</h1><p>A fresh perspective on your chart.</p></div><p id="photo-allowance"></p><p id="photo-source" class="hint"></p>
+        <div class="layout">
+          <form id="photo-form" class="panel controls">
+            <label class="upload"
+              >Upload chart<input
+                type="file"
+                id="file"
+                accept="image/png,image/jpeg,image/webp"
+            /></label>
+            <div id="paste-zone" contenteditable="true" role="button" tabindex="0" aria-label="Paste screenshot" data-placeholder="Paste a screenshot · Ctrl+V"></div>
+            <p class="hint">
+              Upload one clear candlestick chart as PNG, JPEG or WebP, up to 6 MB.
+            </p>
+            <label class="advanced-setting">Analysis method<select id="photo-rule"></select></label>
+            <p id="photo-context" class="hint" hidden></p>
+            <button id="clear-context" class="scan" type="button" hidden>
+              Clear asset context
+            </button>
+            <div id="preview" hidden>
+              <img id="photo-img" alt="Selected chart" /><i
+                id="bounds"
+                hidden
+              ></i
+              ><i id="crop-box" hidden></i>
+            </div>
+            <div id="crop-controls" hidden>
+              <button id="pick-crop" type="button" class="scan">
+                Crop chart
+              </button>
+              <button id="clear-crop" type="button" class="scan" hidden>
+                Full image
+              </button>
+              <p id="crop-hint" class="hint" role="status"></p>
+              <details id="crop-fields" hidden>
+                <summary>Crop boundaries</summary>
+                <div class="pair">
+                  <label
+                    >Left, %<input
+                      id="crop-left"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="any"
+                      value="0"
+                  /></label>
+                  <label
+                    >Top, %<input
+                      id="crop-top"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="any"
+                      value="0"
+                  /></label>
+                  <label
+                    >Right, %<input
+                      id="crop-right"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="any"
+                      value="100"
+                  /></label>
+                  <label
+                    >Bottom, %<input
+                      id="crop-bottom"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="any"
+                      value="100"
+                  /></label>
+                </div>
+                <button class="scan" id="apply-crop" type="button">
+                  Apply crop
+                </button>
+              </details>
+            </div>
+            <button class="primary" id="read-photo">Analyze chart</button>
+          </form>
+          <div id="photo-output" class="panel output" aria-live="polite">
+            <h2>Chart analysis</h2>
+            <p>
+              Upload a Pocket Option screenshot for a technical perspective on the next candle.
+            </p>
+          </div>
+        </div>
+      </section>
+
+<section id="history" class="page" hidden><div class="hero compact"><div class="hero-art" aria-hidden="true"></div><div class="hero-copy"><span class="eyebrow">SIGNALS · CHARTS · PERSPECTIVE</span><h1>Your<br>journal.</h1><p>Every perspective, in one place.</p></div></div>
+<div class="stat-pair"><div><strong id="history-total">0</strong><span>Total analyses</span></div><div><strong id="history-today">0</strong><span>Today · UTC</span></div></div><div class="panel"><span class="eyebrow">SCENARIO JOURNAL</span><div id="history-list"></div></div></section>
+<section id="profile" class="page" hidden><div class="hero compact"><div class="hero-art" aria-hidden="true"></div><div class="hero-copy"><span class="eyebrow">SIGNALS · CHARTS · PERSPECTIVE</span><h1>Your<br>workspace.</h1><p>Your levels, settings and access in one place.</p></div></div>
+<div class="panel user-card"><span class="avatar brand-symbol" aria-hidden="true"></span><div><span class="eyebrow">TRADER</span><h2 id="profile-name">Your profile</h2><p id="profile-since" class="hint"></p></div></div>
+<a href="#access" class="panel profile-access"><span class="eyebrow">ACCESS LEVEL</span><h2 id="profile-tier"></h2><p id="profile-allowance"></p><span class="text-link">Explore access levels <b aria-hidden="true">›</b></span></a>
+<div class="panel controls"><span class="eyebrow">WORKSPACE</span><a class="profile-row" href="#auto">Market signals <b>›</b></a><a class="profile-row" href="#signal">Choose asset <b>›</b></a><a class="profile-row" href="#photo">Chart analysis <b>›</b></a><button id="profile-broker" class="scan">Open Pocket Option</button></div>
+<div class="panel controls"><span class="eyebrow">PREFERENCES</span><div class="profile-row">Language <span>English</span></div><div class="profile-row">Appearance <span id="profile-theme">Violet</span></div><a href="#admin" id="admin-link" class="profile-row" hidden>Administration <b>›</b></a></div></section>
+<section id="access" class="page" hidden><div class="page-heading"><span class="eyebrow">YOUR PROGRESSION</span><h1>Access levels.</h1><p>Find the space that fits your routine.</p></div><div class="tiers"></div></section>
+<section id="tier" class="page tier-screen" hidden><a href="#access" class="tier-back">‹ Access levels</a><div class="tier-links" role="group" aria-label="Access level"></div><div id="tier-actions"></div></section>
+      <section id="admin" class="page" hidden>
+        <h1>Admin</h1>
+        <div class="panel">
+          <h2>Links and visits</h2>
+          <div id="links" class="overflow"></div>
+          <form id="link-form" class="admin-form">
+            <label
+              >Name<input id="link-title" maxlength="90" required /></label
+            ><label
+              >Campaign code<input
+                id="slug"
+                pattern="[A-Za-z0-9_-]{1,48}"
+                required /></label
+            ><label
+              >Broker link<input
+                id="target"
+                type="url"
+                placeholder="https://"
+                required /></label
+            ><button class="primary">Save link</button>
+          </form>
+        </div>
+        <div class="panel">
+          <h2>Users</h2>
+          <div id="members" class="overflow"></div>
+        </div>
+        <div class="panel">
+          <h2>Confirmed deposits</h2>
+          <div id="deposits" class="overflow"></div>
+        </div>
+      </section>
+
+<footer><span data-brand>PARALLAX AI</span><button id="broker" hidden>Open Pocket Option</button></footer>
+<nav class="bottom-nav" aria-label="Navigation"><button data-tab="history"><span class="nav-icon" aria-hidden="true">◷</span>History</button><button data-tab="home"><span class="nav-icon" aria-hidden="true">⊞</span>Panel</button><button data-tab="profile"><span class="nav-icon profile-mark" aria-hidden="true">♙</span>Profile</button></nav>
+<div id="page-transition" hidden aria-hidden="true"><span class="transition-mark brand-symbol"></span><span data-brand>PARALLAX AI</span></div>
+<div id="activity" hidden role="status" aria-live="polite"><div class="analysis-art" aria-hidden="true"><div class="scan-sweep"></div><div class="scan-ring"></div></div><div class="analysis-heading"><span class="eyebrow">DATA · STRUCTURE · PERSPECTIVE</span><h1 id="activity-title" tabindex="-1">Analyzing</h1><p id="activity-caption"></p></div><ol id="analysis-steps"><li><span class="step-number">1</span><div><strong>Prepare request</strong><small>Pending</small></div><i></i></li><li><span class="step-number">2</span><div><strong>Receive market data</strong><small>Pending</small></div><i></i></li><li><span class="step-number">3</span><div><strong>Read candle structure</strong><small>Pending</small></div><i></i></li><li><span class="step-number">4</span><div><strong>Evaluate the setup</strong><small>Pending</small></div><i></i></li><li><span class="step-number">5</span><div><strong>Prepare your result</strong><small>Pending</small></div><i></i></li></ol><div class="analysis-pulse" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
+</main><script src="brand.js" defer></script><script src="static-api.js" defer></script><script src="app.js" defer></script></body></html>
